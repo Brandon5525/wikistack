@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const layout = require("./views/layout");
-const { db } = require("./models");
+const { db, Page, User } = require("./models");
+
+const PORT = 3000
 
 db.authenticate()
   .then(() => {
@@ -20,6 +22,13 @@ app.get("/", (req, res) => {
   res.send(layout(""));
 });
 
-app.listen(3000, () => {
-  console.log("App listening in port 3000");
-});
+const init = async ()=>{
+
+  await db.sync();
+
+  app.listen(PORT, () => {
+    console.log(`App listening in ${PORT}`);
+  });
+}
+
+init();
