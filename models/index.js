@@ -10,7 +10,8 @@ const Page = db.define('Page', {
   },
   slug: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    // defaultValue: 'hello'
   },
   content: {
     type: Sequelize.STRING,
